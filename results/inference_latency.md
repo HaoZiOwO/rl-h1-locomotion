@@ -14,3 +14,10 @@
 
 - 若 CPU mean < 10ms：满足 100Hz 控制环；< 2ms 则满足 500Hz。
 - CUDA 对小模型可能有启动开销（每次调用 kernel launch + H2D/D2H 拷贝），如实报告。
+
+## ONNX 数值一致性校验（2026-08-14）
+
+- 方法：同一随机观测输入（seed=0，batch=1），对比 torch.jit `policy.pt` 与 onnxruntime `policy.onnx` 输出（64 位 CPU）
+- flat: obs_dim=69, MSE=3.58e-14, max_err=4.77e-07
+- rough: obs_dim=256, MSE=5.45e-13, max_err=1.43e-06
+- 结论：JIT 与 ONNX 输出一致（浮点误差级），导出无算子精度损失，可安全部署（校验逻辑已内置 `scripts/export_h1.py`）

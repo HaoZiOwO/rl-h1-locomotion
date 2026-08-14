@@ -39,13 +39,15 @@ NVIDIA Isaac Lab + RSL-RL（PPO）训练 H1 速度跟踪策略：平地 → 崎�
 | 实验 | 结果 | 结论 |
 |---|---|---|
 | 难度-性能曲线 | 20 级难度谱抽 8 代表点（0→19 全跨度）**全部 100% 存活**，奖励 35-36.4 零衰减 | 地形自适应步态 |
+
+> 难度谱说明：评估通过写入 `terrain_levels` 张量 + 重置 + **读回 observed 验证**（`observed == requested`，见 `results/evals_summary.md` §1 与 eval 日志），等级真实生效。0→19 级难度增量对"存活 + 速度跟踪奖励"这一度量的区分度有限——训练课程推进到 level 5.8 后，更高等级仍全存活且奖励无衰减，部分是难度谱度量特性（高等级地形对 H1 通过性不构成瓶颈），非策略在全部难度都经过训练。
 | 负载 0-40kg | flat 40kg 崩（20%），rough/nodr 40kg 仍 100%（29.9/31.8） | 鲁棒性来自训练环境多样性 |
 | 负重训练（+25kg） | 25kg 下 37.6（恢复无负载水平）vs 通用 34.1 | 为承重场景专门训练 |
 | 奖励敏感性 | 强力矩惩罚**完全崩**（0% 存活） | 奖励权重临界点实证 |
 | DR 消融 | nodr 35.0 ≈ rough 35.3 | 动力学 DR 影响小，地形是泛化主因 |
 | 能耗直读 | +25kg 功率 +10%（328 vs 297W）；崎岖 0.175 vs 平地 0.126 reward/W | 节能是奖励设计问题 |
 
-**ONNX 导出与推理延迟**（`scripts/export_h1.py` 导出 JIT/ONNX，基准见 `results/inference_latency.md`）：CPU 推理 flat 0.017ms / rough 0.037ms（mean，2000 次计时），对照控制环预算 100Hz→10ms、500Hz→2ms、1kHz→1ms——满足 500Hz+ 实时控制环，策略可部署到轻量控制器。
+**ONNX 导出与推理延迟**（`scripts/export_h1.py` 导出 JIT/ONNX 并内置数值一致性校验，基准见 `results/inference_latency.md`）：CPU 推理 flat 0.017ms / rough 0.037ms（mean，2000 次计时），对照控制环预算 100Hz→10ms、500Hz→2ms、1kHz→1ms——**满足 1kHz 控制环**（0.017ms 远小于 1ms 预算），且 JIT vs ONNX 输出一致性 MSE ~1e-13（无算子精度损失），策略可安全部署到轻量控制器。
 
 ---
 
