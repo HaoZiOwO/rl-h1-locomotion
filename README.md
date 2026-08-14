@@ -119,8 +119,8 @@ d3rlpy 复现 CQL / Cal-QL（400k 步 GPU），并做 offline→online 微调对
 
 **项目①（H1）**：
 ```bash
-# 训练（本地 Isaac Lab 环境，见下方「Windows 环境搭建笔记」；完整工程保留在本地）
-python scripts/reinforcement_learning/rsl_rl/train.py --task=Isaac-Velocity-Rough-H1-v0 --headless --num_envs=2048
+# 训练（需本地 Isaac Lab 环境，见下方「Windows 环境搭建笔记」；脚本在仓库 scripts/train_custom.py，H1 完整工程保留在本地）
+python scripts/train_custom.py --mode rough --num_envs 2048 --max_iterations 3000
 # 评估（本仓库 scripts/eval_h1_v2.py 可直接运行）
 python scripts/eval_h1_v2.py --task rough --checkpoint <ckpt> --mode curve --levels 0,3,6,9,12,15,18,19
 ```

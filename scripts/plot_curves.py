@@ -10,12 +10,12 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
 
-# 两个训练 run 的事件文件目录
+# 两个训练 run 的事件文件目录（本地 Isaac 训练日志）
 RUNS = {
     "Flat terrain (1000 iter)": r"C:\Users\jz233\robot-rl-project\isaaclab\logs\rsl_rl\h1_flat\2026-08-06_16-30-59",
     "Rough terrain (3000 iter)": r"C:\Users\jz233\robot-rl-project\isaaclab\logs\rsl_rl\h1_rough\2026-08-06_16-45-01",
 }
-OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "training_curves.png")
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets", "training_curves.png")
 
 # 读取事件文件，自动发现"平均奖励"标签
 accs, chosen_tag = {}, None

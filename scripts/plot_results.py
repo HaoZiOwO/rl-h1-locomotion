@@ -16,8 +16,8 @@ matplotlib.rcParams["axes.unicode_minus"] = False
 import matplotlib.pyplot as plt
 import numpy as np
 
-EVALS = r"C:\Users\jz233\robot-rl-project\isaaclab\logs\rsl_rl\evals_v2"
-OUT = r"C:\Users\jz233\robot-rl-project\isaaclab_h1\assets"
+EVALS = r"C:\Users\jz233\robot-rl-project\isaaclab\logs\rsl_rl\evals_v2"  # 本地 H1 评估日志（Isaac 环境产物）
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets")
 os.makedirs(OUT, exist_ok=True)
 
 files = sorted(glob.glob(os.path.join(EVALS, "*.json")))
