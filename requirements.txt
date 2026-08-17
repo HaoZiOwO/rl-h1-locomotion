@@ -1,0 +1,11 @@
+# 项目②③④（MuJoCo / D4RL / 步态）依赖
+# 项目①（H1）依赖 Isaac Lab 完整环境，见 README「Windows 环境搭建笔记」
+numpy>=1.24
+torch>=2.0
+gymnasium>=0.29
+stable-baselines3>=2.3
+d3rlpy>=2.8
+h5py>=3.8
+matplotlib>=3.7
+onnxruntime>=1.17
+tensorboard>=2.14   # scripts/plot_curves.py（H1 训练曲线，数据需本地 Isaac 日志）
