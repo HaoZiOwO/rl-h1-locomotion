@@ -11,7 +11,7 @@ matplotlib.rcParams["font.sans-serif"] = ["Microsoft YaHei", "SimHei"]
 matplotlib.rcParams["axes.unicode_minus"] = False
 import matplotlib.pyplot as plt
 
-OUT = r"C:\Users\jz233\robot-rl-project\isaaclab_h1\assets"
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets")
 os.makedirs(OUT, exist_ok=True)
 
 # (模型, 负载kg, 奖励, 存活率)

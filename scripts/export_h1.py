@@ -58,5 +58,23 @@ runner.export_policy_to_jit(path=export_dir, filename="policy.pt")
 runner.export_policy_to_onnx(path=export_dir, filename="policy.onnx")
 print(f"[INFO] 已导出到: {export_dir}")
 
+# ---- ONNX 数值一致性校验：同一输入下 JIT vs ONNX Runtime 输出对比 ----
+print("[INFO] ONNX 数值一致性校验（JIT vs ONNX Runtime）...")
+import onnxruntime as ort
+import torch as _torch
+ort_sess = ort.InferenceSession(os.path.join(export_dir, "policy.onnx"), providers=["CPUExecutionProvider"])
+obs_dim = int(ort_sess.get_inputs()[0].shape[1])
+jit_model = _torch.jit.load(os.path.join(export_dir, "policy.pt"), map_location="cpu")
+rng = _torch.Generator().manual_seed(0)
+x = _torch.randn(8, obs_dim, generator=rng, dtype=_torch.float32)  # 8 个随机观测
+with _torch.no_grad():
+    y_jit = jit_model(x).cpu().numpy()
+y_ort = ort_sess.run(None, {ort_sess.get_inputs()[0].name: x.numpy()})[0]
+mse = float(((y_jit - y_ort) ** 2).mean())
+max_err = float((abs(y_jit - y_ort)).max())
+print(f"[INFO] 一致性校验: obs_dim={obs_dim}  MSE={mse:.2e}  max_err={max_err:.2e}")
+assert mse < 1e-5, f"ONNX 与 PyTorch 输出不一致（MSE={mse:.2e}）——部署前必须排查算子支持问题"
+print("[INFO] 校验通过：ONNX 与 PyTorch 输出一致，可安全部署")
+
 env.close()
 simulation_app.close()
