@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mxfile host="drawio" version="26.0.0">
+  <diagram name="Exoskeleton RL Stack" id="stack">
+    <mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1722" pageHeight="1452" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="RL 技能栈 → 外骨骼映射（4 项目 + 1 衔接实验）&#10;RL Skill Stack → Exoskeleton Mapping (4 projects + 1 integration)" style="text;html=1;align=center;verticalAlign=middle;fontStyle=1;fontSize=24;fontColor=#2d2d2d;" vertex="1" parent="1">
+          <mxGeometry x="702" y="14" width="483" height="68" as="geometry" />
+        </mxCell>
+
+
+        
+        <mxCell id="2" value="穿戴者 Human wearer&#10;步态数据源 · 踝部加速度 64Hz&#10;gait data · ankle accelerometer (Daphnet)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="483" y="148" width="483" height="94" as="geometry" />
+        </mxCell>
+
+        
+        <mxCell id="3" value="④ 感知层 Perception · 步态相位估计&#10;Gait phase estimation&#10;heel-strike 检出 16/17 段" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="483" y="324" width="483" height="122" as="geometry" />
+        </mxCell>
+
+        
+        <mxCell id="4" value="④ 决策层 Decision · 助力决策原型（ATD 前身）&#10;Assist decision prototype&#10;支撑相助力 · 摆动相释放 · 78% 平滑取舍" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="483" y="540" width="483" height="122" as="geometry" />
+        </mxCell>
+
+        
+        <mxCell id="5" value="① 控制层 Control · 双足运动策略&#10;H1 policy: PPO + terrain curriculum + DR&#10;20 级 8 代表点 100% 存活 · 40kg 负载鲁棒 · ONNX 0.017ms" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="483" y="756" width="483" height="135" as="geometry" />
+        </mxCell>
+
+        
+        <mxCell id="6" value="外骨骼执行器（设计目标）&#10;Exoskeleton actuators (design target)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="483" y="999" width="483" height="94" as="geometry" />
+        </mxCell>
+
+        
+        <mxCell id="7" value="② ③ 训练侧 Training · 怎么学策略&#10;How policies are learned&#10;② 算法家族：PPO / BC / DP / ACT&#10;样本效率 40×（SAC vs PPO）· 蒸馏 28 维&#10;③ Offline RL：CQL 48.2±0.2 (3 seeds)&#10;48→57 · 人机数据无法在线采集（离线学习刚需）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="1035" y="756" width="368" height="148" as="geometry" />
+        </mxCell>
+
+        
+        <mxCell id="e1" value="步态信号 gait signal (64Hz)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;labelBackgroundColor=#ffffff;fontSize=17;" edge="1" parent="1" source="2" target="3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="相位 phase · 支撑相 0-60%" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;labelBackgroundColor=#ffffff;fontSize=17;" edge="1" parent="1" source="3" target="4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="目标力矩 desired torque" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;labelBackgroundColor=#ffffff;fontSize=17;" edge="1" parent="1" source="4" target="5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="力矩指令 torque command" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;labelBackgroundColor=#ffffff;fontSize=17;" edge="1" parent="1" source="5" target="6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="训练策略 trains policy" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;labelBackgroundColor=#ffffff;fontSize=17;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="7" target="5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="-110" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

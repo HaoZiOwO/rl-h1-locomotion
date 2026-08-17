@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mxfile host="drawio" version="26.0.0">
+  <diagram name="Page-1">
+    <mxGraphModel dx="1000" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1120" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="2" value="2026.08 新实验全景（RLPD 归因 · Cal-QL 边界 · 3-seed 稳定性）&#10;Experiment Panorama (Aug 14–16)" style="text;html=1;align=center;verticalAlign=middle;fontSize=19;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="10" width="760" height="60" as="geometry" />
+        </mxCell>
+
+        
+        <mxCell id="3" value="A · RLPD 配方归因 (recipe attribution)" style="swimlane;startSize=30;fillColor=none;strokeColor=#2a6ee8;fontSize=15;fontStyle=1;swimlaneLine=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="420" height="580" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="离线预训练 300k 步&#10;Offline pretrain 300k steps&#10;(10 critics + LayerNorm + UTD=10)" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=15;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="3">
+          <mxGeometry x="20" y="45" width="380" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="0 在线步 = 6713 raw = 56.3 归一化&#10;0 online steps: 56.3 norm&#10;≥55 门槛（无需在线步）" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=15;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="3">
+          <mxGeometry x="20" y="135" width="380" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="5k 首评 6822（98% 来自离线）&#10;5k first eval: 6822 (98% offline)&#10;→ 50k 终值 7691 = 64.2 归一化" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=15;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="3">
+          <mxGeometry x="20" y="235" width="380" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9" value="无配方 SAC 对照 0k = -616&#10;No-recipe SAC: -2.7&#10;低于随机 (below random)" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=15;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="3">
+          <mxGeometry x="20" y="335" width="185" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="10" value="CQL 基线需 ~42k 在线步&#10;CQL baseline: ~42k steps&#10;才过 55 门槛" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=15;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="3">
+          <mxGeometry x="215" y="335" width="185" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="结论：主战场在离线阶段&#10;Verdict: offline phase dominates&#10;(UTD 未隔离 · JAX 未跑 · 3-seed: 55.6±1.3)" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=15;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="3">
+          <mxGeometry x="20" y="445" width="380" height="60" as="geometry" />
+        </mxCell>
+
+        
+        <mxCell id="4" value="B · Cal-QL 边界验证 (boundary)" style="swimlane;startSize=30;fillColor=none;strokeColor=#2aa876;fontSize=15;fontStyle=1;swimlaneLine=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="80" width="380" height="580" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="dense medium：阴性&#10;Dense: negative&#10;CQL 6826 &gt; Cal-QL 6484" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=15;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="4">
+          <mxGeometry x="20" y="45" width="165" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="medium-replay 3-seed：打平&#10;Mixed: 3-seed tie&#10;50k: 5900 vs 5909&#10;Cal-QL 领先 2/3" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=15;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="4">
+          <mxGeometry x="195" y="45" width="165" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="14" value="结论：校准优势未显示增量&#10;Verdict: no detectable gain&#10;(dense 阴性 · mr 打平 · 稀疏未测)" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=15;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="4">
+          <mxGeometry x="20" y="185" width="340" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="15" value="同协议：offline 400k + 微调 50k&#10;Protocol: 400k + 50k, 10 det. episodes" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=13;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="4">
+          <mxGeometry x="20" y="300" width="340" height="55" as="geometry" />
+        </mxCell>
+
+        
+        <mxCell id="5" value="C · CQL 3-seed 与修复 (3-seed &amp; fix)" style="swimlane;startSize=30;fillColor=none;strokeColor=#9673a6;fontSize=15;fontStyle=1;swimlaneLine=0;" vertex="1" parent="1">
+          <mxGeometry x="920" y="80" width="380" height="580" as="geometry" />
+        </mxCell>
+        <mxCell id="16" value="CQL 3-seed：48.35 / 48.16 / 47.95&#10;3 seeds → 48.2±0.2（训练极稳定）" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=15;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="5">
+          <mxGeometry x="20" y="45" width="340" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="17" value="alpha 坍缩修复：1.1 → 48.2&#10;Alpha-collapse fix: 1.1 → 48.2&#10;(读源码定位 update_alpha)" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=15;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="5">
+          <mxGeometry x="20" y="140" width="340" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="18" value="诚实声明：固定 alpha = 变体&#10;Honest note: fixed-alpha variant&#10;(论文为自适应 alpha)" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=15;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="5">
+          <mxGeometry x="20" y="235" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="19" value="评估：400k 步 GPU · 10 局确定性 v4&#10;Eval: 400k steps · 10 det. episodes" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=13;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="5">
+          <mxGeometry x="20" y="315" width="340" height="55" as="geometry" />
+        </mxCell>
+
+        
+        <mxCell id="20" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6c8ebf;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="6" target="7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="21" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6c8ebf;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="7" target="8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="22" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.24;entryY=0;" edge="1" parent="1" source="9" target="11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="23" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.76;entryY=0;" edge="1" parent="1" source="10" target="11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        
+        <mxCell id="24" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;dashed=1;dashPattern=3 3;exitX=0.5;exitY=1;entryX=0.25;entryY=0;" edge="1" parent="1" source="12" target="14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="25" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;exitX=0.5;exitY=1;entryX=0.75;entryY=0;" edge="1" parent="1" source="13" target="14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        
+        <mxCell id="26" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6c8ebf;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="16" target="17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="27" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="17" target="18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        
+        <mxCell id="28" value="过夜补跑队列（08-15 启动 → 08-17 完成）· Overnight seed queue" style="text;html=1;align=center;verticalAlign=middle;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="700" width="1275" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="29" value="mr CQL seed1&#10;✓ 完成 (done)" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=14;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="40" y="755" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="30" value="mr CalQL seed1&#10;✓ 完成 (done)" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=14;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="265" y="755" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="31" value="mr seed2 (CQL+CalQL)&#10;✓ 完成 (done)" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=14;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="490" y="755" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="32" value="RLPD seed2&#10;✓ 完成 (50k 68.5)" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=14;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="715" y="755" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="33" value="RLPD seed3&#10;✓ 完成 (50k 63.6)" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=14;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="940" y="755" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="34" value="全部完成&#10;(all done)" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=14;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1165" y="755" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="35" value="新增机时（mr 4 组 ~15h 已完成 + RLPD seed2/3 各 ~11h 实测）· 对账见 compute_ledger.md · reconciled in compute_ledger.md" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;align=center;fontSize=13;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="40" y="845" width="1275" height="55" as="geometry" />
+        </mxCell>
+
+        <mxCell id="36" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="29" target="30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="37" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="30" target="31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="38" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="31" target="32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="39" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="32" target="33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="40" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="33" target="34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        
+        <mxCell id="41" value="图例 Legend" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#666666;verticalAlign=top;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="40" y="930" width="360" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="42" value="" style="rounded=0;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="41">
+          <mxGeometry x="15" y="32" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="43" value="" style="rounded=0;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="41">
+          <mxGeometry x="15" y="58" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="44" value="" style="rounded=0;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="41">
+          <mxGeometry x="15" y="84" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="45" value="" style="rounded=0;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="41">
+          <mxGeometry x="15" y="110" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="46" value="" style="rounded=0;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="41">
+          <mxGeometry x="15" y="136" width="30" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="47" value="主实验 Main experiments" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;" vertex="1" parent="41">
+          <mxGeometry x="55" y="30" width="280" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="48" value="关键结果 / 阳性 Key results" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;" vertex="1" parent="41">
+          <mxGeometry x="55" y="56" width="280" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="49" value="对照 / 阴性 Control &amp; negative" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;" vertex="1" parent="41">
+          <mxGeometry x="55" y="82" width="280" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="50" value="基线 / 说明 Baseline &amp; notes" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;" vertex="1" parent="41">
+          <mxGeometry x="55" y="108" width="280" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="51" value="调试修复 Debug fix" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;" vertex="1" parent="41">
+          <mxGeometry x="55" y="134" width="280" height="20" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
